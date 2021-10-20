@@ -135,7 +135,7 @@ public struct Web3Signer {
                 return false
             }
             let originalPublicKey = SECP256K1.privateToPublic(privateKey: privateKey)
-            transaction.v = BigUInt(unmarshalledSignature.v) - BigUInt(27)
+            transaction.v = BigUInt(unmarshalledSignature.v)
             transaction.r = BigUInt(Data(unmarshalledSignature.r))
             transaction.s = BigUInt(Data(unmarshalledSignature.s))
             let recoveredPublicKey = transaction.recoverPublicKey()
