@@ -271,6 +271,7 @@ extension ABI.Element {
                 }
                 i = i + 1
             }
+            returnArray["function"] = function
             return returnArray
         }
     }
