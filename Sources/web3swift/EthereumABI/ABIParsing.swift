@@ -30,6 +30,7 @@ extension ABI {
         case constructor
         case fallback
         case event
+        case receive // ex-fallback
     }
     
 }
@@ -58,6 +59,9 @@ fileprivate func parseToElement(from abiRecord: ABI.Record, type: ABI.ElementTyp
     case .event:
         let event = try parseEvent(abiRecord: abiRecord)
         return ABI.Element.event(event)
+    case .receive:
+        let receive = try parseFallback(abiRecord: abiRecord)
+        return ABI.Element.fallback(receive)
     }
     
 }
