@@ -789,16 +789,6 @@ static inline AnyPromise *fulfillLater() {
     XCTAssertEqual([AnyPromise promiseWithValue:[AnyPromise promiseWithValue:@1]].value, @1);
 }
 
-- (void)test_race {
-    id ex = [self expectationWithDescription:@""];
-    id p = PMKAfter(0.1).then(^{ return @2; });
-    PMKRace(@[PMKAfter(10), PMKAfter(20), p]).then(^(id obj){
-        XCTAssertEqual(2, [obj integerValue]);
-        [ex fulfill];
-    });
-    [self waitForExpectationsWithTimeout:1 handler:nil];
-}
-
 - (void)testInBackground {
     id ex = [self expectationWithDescription:@""];
     PMKAfter(0.1).thenInBackground(^{ [ex fulfill]; });
